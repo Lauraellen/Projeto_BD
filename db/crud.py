@@ -3,7 +3,8 @@ from db.db import Graph
 
 class CRUD:
     def __init__(self):
-        self.db = Graph("bolt://44.192.100.12:7687", "neo4j", "specialist-surge-troop")
+        #Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
+        self.db = Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
 
     # ------------------------------------------FUNCTIONS CREATE------------------------------------------------
     def createPerson(self, nome, dataDeNascimento, cartaoDoSus, cpf):
@@ -82,6 +83,6 @@ class CRUD:
         query = "MATCH (v:Vacina{nome: \"" + nome + "\"}) DETACH DELETE v"
         self.db.execute_query(query)
 
-    def deleteManufacturer(self, nome):
-        query = "MATCH (f:Fabricante{nome: \"" + nome + "\"}) DETACH DELETE f"
-        self.db.execute_query(query)
+    # def deleteManufacturer(self, nome):
+    #     query = "MATCH (f:Fabricante{nome: \"" + nome + "\"}) DETACH DELETE f"
+    #     self.db.execute_query(query)
