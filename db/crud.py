@@ -4,8 +4,6 @@ class CRUD:
     def __init__(self):
         self.db = Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
 
-
-
 #------------------------------------------FUNCTIONS CREATE------------------------------------------------
     def createPerson(self, nome, dataDeNascimento, cartaoDoSus, cpf):
         query = "CREATE (:Pessoa{nome: \"" + nome + "\", dataDeNascimento: \"" + dataDeNascimento + \
