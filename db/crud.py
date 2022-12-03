@@ -1,10 +1,11 @@
 from db.db import Graph
 
+
 class CRUD:
     def __init__(self):
-        self.db = Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
+        self.db = Graph("bolt://44.192.100.12:7687", "neo4j", "specialist-surge-troop")
 
-#------------------------------------------FUNCTIONS CREATE------------------------------------------------
+    # ------------------------------------------FUNCTIONS CREATE------------------------------------------------
     def createPerson(self, nome, dataDeNascimento, cartaoDoSus, cpf):
         query = "CREATE (:Pessoa{nome: \"" + nome + "\", dataDeNascimento: \"" + dataDeNascimento + \
                 "\", cartaoDoSus: " + cartaoDoSus + ", cpf: " + cpf + "})"
@@ -40,7 +41,7 @@ class CRUD:
                 "\"}) CREATE (v)-[:FABRICADA_POR]->(f)"
         self.db.execute_query(query)
 
-#------------------------------------------FUNCTIONS READ------------------------------------------------
+    # ------------------------------------------FUNCTIONS READ------------------------------------------------
 
     def readPerson(self, nome):
         query = "MATCH (p:Pessoa{nome: \"" + nome + "\"}) RETURN p"
@@ -58,12 +59,16 @@ class CRUD:
         query = "MATCH (f:Fabricante{nome: \"" + nome + "\"}) RETURN f"
         print(self.db.execute_query(query))
 
-# ------------------------------------------FUNCTIONS UPDATE------------------------------------------------
+    # ------------------------------------------FUNCTIONS UPDATE------------------------------------------------
 
+    def updatePerson(self, nome, cpf):
+        return self.db.execute_query('match (p:Pessoa{nome: $nome}) set p.cpf = $cpf return p',
+                                      {'nome': nome, 'cpf': cpf})
 
-
-
-#------------------------------------------FUNCTIONS DELETE------------------------------------------------
+    def updatePSF(self, cidade, numIdent, endereco):
+        return self.db.execute_query('match (p:PSF{cidade: $cidade, numIdent: $numIdent}) set p.endereco = $endereco return p',
+                                      {'cidade': cidade, 'numIdent': numIdent, 'endereco': endereco})
+    # ------------------------------------------FUNCTIONS DELETE------------------------------------------------
 
     def deletePerson(self, nome):
         query = "MATCH (p:Pessoa{nome: \"" + nome + "\"}) DETACH DELETE p"
