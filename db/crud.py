@@ -25,6 +25,20 @@ class CRUD:
                 "\", fundacao: " + fundacao + "})"
         self.db.execute_query(query)
 
+    def createRelationshipPersonVaccine(self, nomePerson, nomeVaccine, lote):
+        query = "MATCH (p:Pessoa{nome: \"" + nomePerson + "\"}), (v:Vacina{nome: \"" + nomeVaccine + \
+                "\"}) CREATE (p)-[:RECEBE{lote:" + lote + "}]->(v)"
+        self.db.execute_query(query)
+
+    def createRelationshipPersonPSF(self, nomePerson, numIdentPSF):
+        query = "MATCH (p:Pessoa{nome: \"" + nomePerson + "\"}), (s:PSF{numIdent: " + numIdentPSF + \
+                "}) CREATE (p)-[:PERTENCE_A]->(S)"
+        self.db.execute_query(query)
+
+    def createRelationshipVaccineManufacturer(self, nomeVaccine, nomeManufacturer):
+        query = "MATCH (v:Vacina{nome: \"" + nomeVaccine + "\"}), (f:PSF{nome: \"" + nomeManufacturer + \
+                "\"}) CREATE (v)-[:FABRICADA_POR]->(f)"
+        self.db.execute_query(query)
 
 #------------------------------------------FUNCTIONS READ------------------------------------------------
 

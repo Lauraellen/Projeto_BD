@@ -5,7 +5,8 @@ crud = CRUD()
 menu = True
 while(menu):
 
-    print("Teste")
+    print("O que deseja fazer?")
+    
 
     menu = False
 
