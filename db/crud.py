@@ -43,3 +43,26 @@ class CRUD:
     def readManufacturer(self, nome):
         query = "MATCH (f:Fabricante{nome: \"" + nome + "\"}) RETURN f"
         print(self.db.execute_query(query))
+
+# ------------------------------------------FUNCTIONS UPDATE------------------------------------------------
+
+
+
+
+#------------------------------------------FUNCTIONS DELETE------------------------------------------------
+
+    def deletePerson(self, nome):
+        query = "MATCH (p:Pessoa{nome: \"" + nome + "\"}) DETACH DELETE p"
+        self.db.execute_query(query)
+
+    def deletePSF(self, numIdent):
+        query = "MATCH (s:PSF{numIdent: \"" + numIdent + "\"}) DETACH DELETE s"
+        self.db.execute_query(query)
+
+    def deleteVaccine(self, nome):
+        query = "MATCH (v:Vacina{nome: \"" + nome + "\"}) DETACH DELETE v"
+        self.db.execute_query(query)
+
+    def deleteManufacturer(self, nome):
+        query = "MATCH (f:Fabricante{nome: \"" + nome + "\"}) DETACH DELETE f"
+        self.db.execute_query(query)
