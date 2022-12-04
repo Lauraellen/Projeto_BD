@@ -4,20 +4,64 @@ crud = CRUD()
 
 menu = True
 while(menu):
+
     print("Seja bem vindo ao sistema de controle de vacinas!")
     print("O que deseja fazer?")
 
-    value = int(input(
-        "1 - Verificar dados de um paciente cadastrado no sistema \n"
-        "2 - Verificar dados de uma vacina \n"
-        "3 - Verificar dados de um PSF \n"
-        "4 - Verificar dados de um fabricante de vacinas\n"
-        "5 - Atualizar dados de um paciente \n"
-        "6 - Atualizar dados de um PSF \n"
-        "7 - Remover paciente do sistema \n"
-        "8 - Remover vacina do sistema \n"
-        "9 - Verificar fabricante de alguma vacina \n"
+    value1 = int(input(
+        "1 - Acessar a área de pacientes \n"
+        "2 - Acessa a área de vacinas \n"
+        "3 - Acessa a área de fabricantes de vacinas \n"
+        "4 - Acessar a área de PSF \n"
     ))
+
+    if(value1 == 1):
+
+        print("O que deseja fazer agora?")
+        value2 = int(input(
+            "1 - Adicionar um novo paciente ao sistema \n"
+            "2 - Verificar dados de um paciente cadastrado no sistema \n"
+            "3 - Atualizar dados de um paciente \n"
+            "4 - Adicionar uma vacina a ficha do paciente \n"
+            "5 - Vincular paciente a um PSF \n"
+            "6 - Remover um paciente do sistema \n"
+            "7 - Voltar ao menu principal \n"
+        ))
+
+    if(value1 == 2):
+         print("O que deseja fazer agora?")
+         value2 = int(input(
+             "1 - Cadastrar uma nova vacina no sistema \n"
+             "2 - Consultar dados de uma vacina \n"
+             "3 - Atualizar dados de uma vacina \n"
+             "4 - Verificar fabricante de alguma vacina \n"
+             "5 - Vincular vacina a um fabricante \n"
+             "6 - Remover alguma vacina do sistema \n"
+             "7 - Voltar ao menu principal \n"
+         ))
+
+    if(value1 == 3):
+        print("O que deseja fazer agora?")
+        value2 = int(input(
+            "1 - Cadastrar um novo fabricante de vacinas no sistema \n"
+            "2 - Consultar dados de algum fabricante \n"
+            "3 - Atualizar dados de algum fabricante \n"
+            "4 - Remover algum fabricante do sistema \n"
+            "5 - Voltar ao menu principal \n"
+        ))
+    
+    if(value1 == 4):
+        print("O que deseja fazer agora?")
+        value2 = int(input(
+            "1 - Cadastrar um novo PSF no sistema \n"
+            "2 - Consultar dados de algum PSF \n"
+            "3 - Atualizar dados de algum PSF \n"
+            "4 - Remover algum PSF do sistema \n"
+            "5 - Voltar ao menu principal \n"
+        ))
+
+
+
 
     if (value == 1):
         name = input("Entre com o nome do paciente: \n")
