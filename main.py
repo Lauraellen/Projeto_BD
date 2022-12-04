@@ -8,16 +8,15 @@ while(menu):
     print("O que deseja fazer?")
 
     value = int(input(
-        "1 - Verificar dados do paciente cadastrado no sistema \n"
-        "2 - Verificar dados da vacina \n"
-        "3 - Verificar dados das PSF \n"
-        "4 - Verificar dados do fabricante \n"
-        "5 - Atualizar dados do paciente \n"
-        "6 - Atualizar dados do PSF \n"
+        "1 - Verificar dados de um paciente cadastrado no sistema \n"
+        "2 - Verificar dados de uma vacina \n"
+        "3 - Verificar dados de um PSF \n"
+        "4 - Verificar dados de um fabricante de vacinas\n"
+        "5 - Atualizar dados de um paciente \n"
+        "6 - Atualizar dados de um PSF \n"
         "7 - Remover paciente do sistema \n"
         "8 - Remover vacina do sistema \n"
         "9 - Verificar fabricante de alguma vacina \n"
-
     ))
 
     if (value == 1):
