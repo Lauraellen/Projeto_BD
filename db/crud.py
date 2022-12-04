@@ -8,7 +8,7 @@ class CRUD:
 
     # ------------------------------------------FUNCTIONS CREATE------------------------------------------------
     def createPerson(self, nome, dataDeNascimento, cartaoDoSus, cpf):
-        query = "create (:Pessoa{nome: $nome, dataDeNascimento: $dataDeNascimento, cartaoDoSus: $cartaoDoSus, +cpf: $cpf})"
+        query = "create (:Pessoa{nome: $nome, dataDeNascimento: $dataDeNascimento, cartaoDoSus: $cartaoDoSus, cpf: $cpf})"
         self.db.execute_query(query, {'nome': nome, 'dataDeNascimento': dataDeNascimento, 'cartaoDoSus': cartaoDoSus, 'cpf': cpf})
 
     def createPSF(self, numIdent, endereco, cidade):

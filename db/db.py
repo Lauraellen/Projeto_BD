@@ -13,6 +13,4 @@ class Graph:
             results = session.run(query, parameters)
             for record in results:
                 data.append(record)
-            a_record = data[0]
-            list_of_things_in_record = list(a_record)
-            return list_of_things_in_record
+            return data
