@@ -65,9 +65,7 @@ while(menu):
             crud.deletePerson(nome)
             print("Paciente removido do sistema!")
             print("")
-        elif(value2 == 7):
-            break
-        else:
+        elif(value2 != 7):
             print("Valor digitado inválido, tente novamente.")
             print("")
 
@@ -108,9 +106,7 @@ while(menu):
              crud.deleteVaccine(nome)
              print("Vacina deletada do sistema!")
              print("")
-         elif (value3 == 6):
-             break
-         else:
+         elif (value3 != 6):
              print("Valor digitado inválido, tente novamente.")
              print("")
 
@@ -139,9 +135,7 @@ while(menu):
             crud.deleteManufacturer(nome)
             print("Fabricante deletado do sistema!")
             print("")
-        elif (value4 == 4):
-            break
-        else:
+        elif (value4 != 4):
             print("Valor digitado inválido, tente novamente.")
             print("")
 
@@ -180,9 +174,7 @@ while(menu):
             crud.deletePSF(numIdent,cidade)
             print("PSF deletado do sistema!")
             print("")
-        elif (value5 == 5):
-            break
-        else:
+        elif (value5 != 5):
             print("Valor digitado inválido, tente novamente.")
             print("")
     else:
