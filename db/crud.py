@@ -4,7 +4,7 @@ from db.db import Graph
 class CRUD:
     def __init__(self):
         #Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
-        self.db = Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
+        self.db = Graph("bolt://54.237.172.94:7687", "neo4j", "assaults-guy-rooms")
 
     # ------------------------------------------FUNCTIONS CREATE------------------------------------------------
     def createPerson(self, nome, dataDeNascimento, cartaoDoSus, cpf):
@@ -59,6 +59,10 @@ class CRUD:
     def readManufacturer(self, nome):
         query = "MATCH (f:Fabricante{nome: \"" + nome + "\"}) RETURN f"
         print(self.db.execute_query(query))
+
+    def findManufacturerByVaccine(self, vacina):
+        return self.db.execute_query("MATCH p=(v:Vacina{nome: $vacina})-[r:FABRICADA_POR]->() return p",
+            {'nome:': vacina})
 
     # ------------------------------------------FUNCTIONS UPDATE------------------------------------------------
 

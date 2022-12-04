@@ -16,13 +16,19 @@ while(menu):
         "6 - Atualizar dados do PSF \n"
         "7 - Remover paciente do sistema \n"
         "8 - Remover vacina do sistema \n"
+        "9 - Verificar fabricante de alguma vacina \n"
 
     ))
 
     if (value == 1):
-        crud.readPerson('Lucas')
+        name = input("Entre com o nome do paciente: \n")
+        crud.readPerson(name)
     if(value == 2):
-        crud.readVaccine('Influenza')
+        vacina = input("Entre com o nome da vacina: \n")
+        crud.readVaccine(vacina)
+    if(value == 9):
+        vacina = input("Entre com o nome da vacina: \n")
+        crud.findManufacturerByVaccine(vacina)
 
     menu = False
 
