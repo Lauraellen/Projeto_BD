@@ -8,7 +8,7 @@ class CRUD:
 
     # ------------------------------------------FUNCTIONS CREATE------------------------------------------------
     def createPerson(self, nome, dataDeNascimento, cartaoDoSus, cpf):
-        query = "create (:Pessoa{nome: $nome, dataDeNascimento: $dataDeNascimento, cartaoDoSus: $cartaoDoSus, +cpf: $cpf})"
+        query = "create (:Pessoa{nome: $nome, dataDeNascimento: $dataDeNascimento, cartaoDoSus: $cartaoDoSus, cpf: $cpf})"
         self.db.execute_query(query, {'nome': nome, 'dataDeNascimento': dataDeNascimento, 'cartaoDoSus': cartaoDoSus, 'cpf': cpf})
 
     def createPSF(self, numIdent, endereco, cidade):
@@ -28,11 +28,11 @@ class CRUD:
         self.db.execute_query(query,{'nomePerson': nomePerson, 'nomeVaccine': nomeVaccine, 'lote': lote})
 
     def createRelationshipPersonPSF(self, nomePerson, cidade, numIdentPSF):
-        query = "match (p:Pessoa{nome: $nomePerson}), (s:PSF{numIdent: $numIdentPSF, cidade: $cidade}) CREATE (p)-[:PERTENCE_A]->(S)"
-        self.db.execute_query(query, {'nomePerson': nomePerson, 'cidade': cidade, 'numIdentPSF': numIdentPSF})
+        query = "match (p:Pessoa{nome: $nomePerson}), (s:PSF{numIdent: $numIdentPSF, cidade: $cidade}) CREATE (p)-[:PERTENCE_A]->(s)"
+        self.db.execute_query(query, {'nomePerson': nomePerson, 'cidade': cidade, 'numIdentPSF': int(numIdentPSF)})
 
     def createRelationshipVaccineManufacturer(self, nomeVaccine, nomeManufacturer):
-        query = "match (v:Vacina{nome: $nomeVaccine}), (f:PSF{nome: $nomeManufacturer}) CREATE (v)-[:FABRICADA_POR]->(f)"
+        query = "match (v:Vacina{nome: $nomeVaccine}), (f:Fabricante{nome: $nomeManufacturer}) CREATE (v)-[:FABRICADA_POR]->(f)"
         self.db.execute_query(query,{'nomeVaccine': nomeVaccine,'nomeManufacturer': nomeManufacturer})
 
     # ------------------------------------------FUNCTIONS READ------------------------------------------------
