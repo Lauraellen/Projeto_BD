@@ -53,9 +53,9 @@ class CRUD:
         query = "MATCH (f:Fabricante{nome: $nome} return f"
         print(self.db.execute_query(query,{'nome': nome}))
 
-    def findManufacturerByVaccine(self, vacina):
-        return self.db.execute_query("MATCH p=(v:Vacina{nome: $vacina})-[r:FABRICADA_POR]->() return p",
-            {'nome:': vacina})
+    def findManufacturerByVaccine(self, nome):
+        return self.db.execute_query("MATCH (v:Vacina{nome: $nome})-[r:FABRICADA_POR]->(p:Fabricante) return p.nome", {
+            'nome': nome})
 
     # ------------------------------------------FUNCTIONS UPDATE------------------------------------------------
 
