@@ -3,8 +3,7 @@ from db.db import Graph
 
 class CRUD:
     def __init__(self):
-        #Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
-        self.db = Graph("bolt://54.237.172.94:7687", "neo4j", "assaults-guy-rooms")
+        self.db = Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
 
     # ------------------------------------------FUNCTIONS CREATE------------------------------------------------
     def createPerson(self, nome, dataDeNascimento, cartaoDoSus, cpf):
@@ -28,11 +27,11 @@ class CRUD:
         self.db.execute_query(query,{'nomePerson': nomePerson, 'nomeVaccine': nomeVaccine, 'lote': lote})
 
     def createRelationshipPersonPSF(self, nomePerson, cidade, numIdentPSF):
-        query = "match (p:Pessoa{nome: $nomePerson}), (s:PSF{numIdent: $numIdentPSF, cidade: $cidade}) CREATE (p)-[:PERTENCE_A]->(S)"
-        self.db.execute_query(query, {'nomePerson': nomePerson, 'cidade': cidade, 'numIdentPSF': numIdentPSF})
+        query = "match (p:Pessoa{nome: $nomePerson}), (s:PSF{numIdent: $numIdentPSF, cidade: $cidade}) CREATE (p)-[:PERTENCE_A]->(s)"
+        self.db.execute_query(query, {'nomePerson': nomePerson, 'cidade': cidade, 'numIdentPSF': int(numIdentPSF)})
 
     def createRelationshipVaccineManufacturer(self, nomeVaccine, nomeManufacturer):
-        query = "match (v:Vacina{nome: $nomeVaccine}), (f:PSF{nome: $nomeManufacturer}) CREATE (v)-[:FABRICADA_POR]->(f)"
+        query = "match (v:Vacina{nome: $nomeVaccine}), (f:Fabricante{nome: $nomeManufacturer}) CREATE (v)-[:FABRICADA_POR]->(f)"
         self.db.execute_query(query,{'nomeVaccine': nomeVaccine,'nomeManufacturer': nomeManufacturer})
 
     # ------------------------------------------FUNCTIONS READ------------------------------------------------
@@ -50,12 +49,12 @@ class CRUD:
         print(self.db.execute_query(query,{'nome': nome}))
 
     def readManufacturer(self, nome):
-        query = "MATCH (f:Fabricante{nome: $nome} return f"
+        query = "match (f:Fabricante{nome: $nome}) return f"
         print(self.db.execute_query(query,{'nome': nome}))
 
     def findManufacturerByVaccine(self, nome):
-        return self.db.execute_query("MATCH (v:Vacina{nome: $nome})-[r:FABRICADA_POR]->(p:Fabricante) return p.nome", {
-            'nome': nome})
+        print(self.db.execute_query("match (v:Vacina{nome: $nome})-[r:FABRICADA_POR]->(p:Fabricante) return p.nome", {
+            'nome': nome}))
 
     def countVaccine(self, nome):
         query = self.db.execute_query('match (v:Vacina{nome: $nome}) return count(*)', {
