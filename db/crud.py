@@ -27,9 +27,9 @@ class CRUD:
         query = "match (p:Pessoa{nome: $nomePerson}), (v:Vacina{nome: $nomeVaccine}) CREATE (p)-[:RECEBE{lote: $lote}]->(v)"
         self.db.execute_query(query,{'nomePerson': nomePerson, 'nomeVaccine': nomeVaccine, 'lote': lote})
 
-    def createRelationshipPersonPSF(self, nomePerson, numIdentPSF):
-        query = "match (p:Pessoa{nome: $nomePerson}), (s:PSF{numIdent: $numIdentPSF}) CREATE (p)-[:PERTENCE_A]->(S)"
-        self.db.execute_query(query, {'nomePerson': nomePerson, 'numIdentPSF': numIdentPSF})
+    def createRelationshipPersonPSF(self, nomePerson, cidade, numIdentPSF):
+        query = "match (p:Pessoa{nome: $nomePerson}), (s:PSF{numIdent: $numIdentPSF, cidade: $cidade}) CREATE (p)-[:PERTENCE_A]->(S)"
+        self.db.execute_query(query, {'nomePerson': nomePerson, 'cidade': cidade, 'numIdentPSF': numIdentPSF})
 
     def createRelationshipVaccineManufacturer(self, nomeVaccine, nomeManufacturer):
         query = "match (v:Vacina{nome: $nomeVaccine}), (f:PSF{nome: $nomeManufacturer}) CREATE (v)-[:FABRICADA_POR]->(f)"
@@ -41,9 +41,9 @@ class CRUD:
         query = "match (p:Pessoa{nome: $nome}) return p"
         print(self.db.execute_query(query,{'nome': nome}))
 
-    def readPSF(self, numIdent):
-        query = "match (s:PSF{numIdent: $numIdent}) return s"
-        print(self.db.execute_query(query,{'numIdent': numIdent}))
+    def readPSF(self, numIdent, cidade):
+        query = "match (s:PSF{numIdent: $numIdent, cidade: $cidade}) return s"
+        print(self.db.execute_query(query,{'numIdent': numIdent, 'cidade': cidade}))
 
     def readVaccine(self, nome):
         query = "match (v:Vacina{nome: $nome})return v"
@@ -73,9 +73,9 @@ class CRUD:
         query = "match (p:Pessoa{nome: $nome}) detach delete p"
         self.db.execute_query(query,{'nome': nome})
 
-    def deletePSF(self, numIdent):
-        query = "match (s:PSF{numIdent: $numIdent}) detach delete s"
-        self.db.execute_query(query,{'numIdent': numIdent})
+    def deletePSF(self, numIdent, cidade):
+        query = "match (s:PSF{numIdent: $numIdent, cidade: $cidade}) detach delete s"
+        self.db.execute_query(query,{'numIdent': numIdent, 'cidade': cidade})
 
     def deleteVaccine(self, nome):
         query = "match (v:Vacina{nome: $nome}) detach delete v"
