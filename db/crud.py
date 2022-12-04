@@ -50,12 +50,12 @@ class CRUD:
         print(self.db.execute_query(query,{'nome': nome}))
 
     def readManufacturer(self, nome):
-        query = "MATCH (f:Fabricante{nome: $nome} return f"
+        query = "match (f:Fabricante{nome: $nome}) return f"
         print(self.db.execute_query(query,{'nome': nome}))
 
     def findManufacturerByVaccine(self, nome):
-        return self.db.execute_query("MATCH (v:Vacina{nome: $nome})-[r:FABRICADA_POR]->(p:Fabricante) return p.nome", {
-            'nome': nome})
+        print(self.db.execute_query("match (v:Vacina{nome: $nome})-[r:FABRICADA_POR]->(p:Fabricante) return p.nome", {
+            'nome': nome}))
 
     # ------------------------------------------FUNCTIONS UPDATE------------------------------------------------
 
