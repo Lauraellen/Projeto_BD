@@ -2,16 +2,14 @@ from db.crud import CRUD
 
 crud = CRUD()
 
-# crud.updatePerson('Lucas', 59890104008)
-# crud.updatePSF('São Paulo', '2', 'Rua Paracatu, 125, Bairro Parque Imperial')
 menu = True
 while(menu):
     print("Seja bem vindo ao sistema de controle de vacinas!")
     print("O que deseja fazer?")
 
     value = int(input(
-        "1 - Verificar pacientes cadastrados no sistema \n"
-        "2 - Verificar vacinas disponiveis \n"
+        "1 - Verificar dados do paciente cadastrado no sistema \n"
+        "2 - Verificar dados da vacina \n"
         "3 - Verificar dados das PSF \n"
         "4 - Verificar dados do fabricante \n"
         "5 - Atualizar dados do paciente \n"
@@ -20,6 +18,11 @@ while(menu):
         "8 - Remover vacina do sistema \n"
 
     ))
+
+    if (value == 1):
+        crud.readPerson('Lucas')
+    if(value == 2):
+        crud.readVaccine('Influenza')
 
     menu = False
 
