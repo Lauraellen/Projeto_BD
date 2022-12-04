@@ -13,4 +13,5 @@ class Graph:
             results = session.run(query, parameters)
             for record in results:
                 data.append(record)
+
             return data

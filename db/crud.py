@@ -4,7 +4,7 @@ from db.db import Graph
 class CRUD:
     def __init__(self):
         #Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
-        self.db = Graph("bolt://34.200.218.33:7687", "neo4j", "roof-money-hardcopies")
+        self.db = Graph("bolt://54.237.172.94:7687", "neo4j", "assaults-guy-rooms")
 
     # ------------------------------------------FUNCTIONS CREATE------------------------------------------------
     def createPerson(self, nome, dataDeNascimento, cartaoDoSus, cpf):
@@ -57,6 +57,19 @@ class CRUD:
         return self.db.execute_query("MATCH (v:Vacina{nome: $nome})-[r:FABRICADA_POR]->(p:Fabricante) return p.nome", {
             'nome': nome})
 
+    def countVaccine(self, nome):
+        query = self.db.execute_query('match (v:Vacina{nome: $nome}) return count(*)', {
+            'nome': nome})
+        a_record = query[0]
+        qtdVaccine = list(a_record)
+        return qtdVaccine[0]
+
+    def findPSFByPerson(self, nome):
+        query = self.db.execute_query('MATCH (p:Pessoa{nome: $nome})-[r:PERTENCE_A]->(s:PSF) return s', {
+            'nome': nome})
+        a_record = query[0]
+        qtdVaccine = list(a_record)
+        return qtdVaccine[0]
     # ------------------------------------------FUNCTIONS UPDATE------------------------------------------------
 
     def updatePerson(self, nome, cpf):

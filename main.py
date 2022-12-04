@@ -24,8 +24,9 @@ while(menu):
             "3 - Atualizar CPF de um paciente \n"
             "4 - Adicionar uma vacina a ficha do paciente \n"
             "5 - Vincular paciente a um PSF \n"
-            "6 - Remover um paciente do sistema \n"
-            "7 - Voltar ao menu principal \n"
+            "6 - Verificar a qual PSF o paciente pertence \n"
+            "7 - Remover um paciente do sistema \n"
+            "8 - Voltar ao menu principal \n"
         ))
 
         if(value2 == 1):
@@ -60,12 +61,16 @@ while(menu):
             crud.createRelationshipPersonPSF(nome,cidade,numIdent)
             print("Paciente vinculado ao PSF informado!")
             print("")
-        elif(value2 == 6):
+        elif (value2 == 6):
+            nome = input("Informe o nome do paciente: ")
+            result = crud.findPSFByPerson(nome)
+            print(result)
+        elif(value2 == 7):
             nome = input("Informe o nome do paciente que deseja remover do sistema: ")
             crud.deletePerson(nome)
             print("Paciente removido do sistema!")
             print("")
-        elif(value2 != 7):
+        elif(value2 != 8):
             print("Valor digitado inválido, tente novamente.")
             print("")
 
@@ -77,7 +82,9 @@ while(menu):
              "3 - Verificar fabricante de alguma vacina \n"
              "4 - Vincular vacina a um fabricante \n"
              "5 - Remover alguma vacina do sistema \n"
-             "6 - Voltar ao menu principal \n"
+             "6 - Verificar quantas unidades de alguma vacina há no sistema\n"
+             "7 - Voltar ao menu principal \n"
+
          ))
 
          if (value3 == 1):
@@ -106,7 +113,10 @@ while(menu):
              crud.deleteVaccine(nome)
              print("Vacina deletada do sistema!")
              print("")
-         elif (value3 != 6):
+         elif (value3 == 6):
+             nome = input("Informe o nome da vacina: ")
+             print('Há ' + (str(crud.countVaccine(nome)) + ' vacina(s) cadastrada no sistema'))
+         elif (value3 != 7):
              print("Valor digitado inválido, tente novamente.")
              print("")
 
